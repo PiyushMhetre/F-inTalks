@@ -26,7 +26,7 @@ export default function Feed() {
   }, [location.state])
 
   return (
-    <div className="laptop:mt-16 mt-10 overflow-x-hidden ">
+    <div className="laptop:mt-16 mt-9 overflow-x-hidden ">
     {
       loginFlag ? (
          <div className=" flex flex-col items-center bg-[#F3F6FB]">

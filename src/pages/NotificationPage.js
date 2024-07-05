@@ -40,7 +40,7 @@ export default function NotificationPage() {
   
 
   return (
-    <div className=" mt-16">
+    <div className=" laptop:mt-16 mt-9">
       {
         loginFlag ? (
               <div className="min-h-screen bg-customGray">

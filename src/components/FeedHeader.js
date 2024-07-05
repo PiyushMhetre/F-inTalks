@@ -75,7 +75,7 @@ export default function FeedHeader() {
   };
 
   return (
-    <div className=" ">
+    <div className="  ">
       <div className="w-full fixed top-0 z-10 shadow-md laptop:p-1 flex justify-around bg-white">
       <div className="flex gap-6 desktop:gap-60 laptop:gap-28 laptop:justify-between mt-1">
         <div className="laptop:h-8 flex gap-2 laptop:gap-2">
@@ -109,7 +109,7 @@ export default function FeedHeader() {
           </div>
         </div>
 
-        <div className="flex gap-3 laptop:gap-3 desktop:gap-7 h-5 laptop:h-12 text-xs">
+        <div className="flex gap-3 laptop:gap-3 desktop:gap-7 h-5 laptop:h-12 text-xs mt-1">
           <Link
             to="/feed"
             className={`flex items-center text-[0.8em] laptop:text-[1.3em] font-semibold ${
@@ -144,8 +144,8 @@ export default function FeedHeader() {
           >
             Notifications
             {newNotificationFlag && (
-              <span className="absolute top-3 -right-2 transform bg-red-600 text-white rounded-full w-4 h-4 z-10">
-                <div className="absolute text-xs right-1">
+              <span className="absolute laptop:top-3 mobile:bottom-2 -right-1 laptop:-right-2 transform bg-red-600 text-white rounded-full laptop:w-4 laptop:h-4 z-10 w-3 h-3">
+                <div className="absolute text-xs right-1 ">
                   {newNotificationCount}
                 </div>
               </span>
@@ -160,7 +160,11 @@ export default function FeedHeader() {
             }`}
             onClick={() => setSelectedOption("Me")}
           >
-            Me
+            <img
+              src={userProfile}
+              alt="Profile"
+              className="h-7 w-7 laptop:h-9 laptop:w-9 rounded-full cursor-pointer border-2 shadow-lg"
+            />
           </Link>
 
           <Link

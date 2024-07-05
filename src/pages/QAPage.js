@@ -28,7 +28,7 @@ export default function QAPage() {
   }, [location.state]);
 
   return (
-    <div className="laptop:mt-16 mt-10">
+    <div className="laptop:mt-16 mt-9">
     {
       loginFlag ? (
          <div className=" flex flex-col items-center bg-customGray">

@@ -156,7 +156,7 @@ export default function ProfilePage() {
     <>
       <Toaster />
       <div className=" min-h-screen relative  bg-customGray">
-        <div className="mt-16">
+        <div className="laptop:mt-16 mt-9">
           {loginFlag ? (
             <div className="">
               <div className="mt-1 flex flex-col items-center ">

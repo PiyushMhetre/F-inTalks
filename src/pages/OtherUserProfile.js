@@ -63,7 +63,7 @@ export default function OtherUserProfile() {
   }, [otherUserId]);
 
   return (
-    <div className="mt-16 flex flex-col items-center min-h-screen relative  bg-customGray">
+    <div className="laptop:mt-16 mt-9 flex flex-col items-center min-h-screen relative  bg-customGray">
       <div className="flex flex-col items-center mt-3 mx-[10%] laptop:mx-[20%] w-[80%] laptop:w-[60%] text-sm bg-white p-6 rounded-lg shadow-md">
           <div className="flex items-center">
             <img
