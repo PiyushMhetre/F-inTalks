@@ -61,7 +61,7 @@ function App() {
     return () => clearTimeout(timer)
   }, [])
 
-  const { loginFlag, loading } = useDataContext();
+  const {  loading } = useDataContext();
 
   return (
    

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import LoginHeader from "../components/LoginHeader.js";
 import { useForm } from "react-hook-form";
 import loginImage from "../images/loginImage.jpg";

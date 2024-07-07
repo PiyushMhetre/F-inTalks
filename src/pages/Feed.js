@@ -1,16 +1,12 @@
-import React, { useEffect, useState } from "react";
-import FeedHeader from "../components/FeedHeader.js";
-import { useLocation } from "react-router-dom";
+import React, {  useState } from "react";
 import CreatePost from "../components/CreatePost.js";
 import Card from "../components/Card.js";
 import { useDataContext } from "../DataContext";
 import { FaArrowUpLong } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 export default function Feed() {
-  const location = useLocation();
-  const [notifiedBlog, setNotifiedBlog] = useState(null);
   const [isCreatePostOpen, setIsCreatePostOpen] = useState(false);
-  const { allBlogs, userId, blogNotificationFlag, setBlogNotificationFlag, fetchData, loginFlag } = useDataContext();
+  const { allBlogs, userId, blogNotificationFlag, setBlogNotificationFlag, loginFlag } = useDataContext();
   function handleOpenCreatePost() {
     setIsCreatePostOpen(true);
   }
@@ -19,11 +15,7 @@ export default function Feed() {
     setIsCreatePostOpen(false);
   }
 
-  useEffect(() => {
-    if (location.state && location.state.NotifiedPost) {
-      setNotifiedBlog(location.state.NotifiedPost);
-    }
-  }, [location.state])
+ 
 
   return (
     <div className="laptop:mt-16 mt-9 overflow-x-hidden ">

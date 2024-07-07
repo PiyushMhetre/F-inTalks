@@ -43,7 +43,7 @@ export default function SignUp() {
   return (
     <div className="flex flex-col items-center mt-10 overflow-x-hidden  ">
       <div className="self-center pb-4">
-        <img src={logo} loading="lazy" className="w-20 laptop:w-40" />
+        <img src={logo} loading="lazy" alt="logo" className="w-20 laptop:w-40" />
       </div>
 
       <div className="text-xl text-center  laptop:text-2xl mb-5 text-red-700 ">

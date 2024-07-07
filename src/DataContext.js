@@ -173,7 +173,7 @@ export const DataProvider = ({ children }) => {
           //we are setting the new coming post here only if the user is online 
           if (messageObject.type === "newBlog") {
             setBlogNotificationFlag(true);
-            if(messageObject.post.type == 'blog'){
+            if(messageObject.post.type === 'blog'){
               // console.log("blog from noti",messageObject.post)
               setAllBlogs((preBlogs) => [
               messageObject.post,

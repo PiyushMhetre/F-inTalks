@@ -2,16 +2,18 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { Toaster, toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+
 
 function ForgotPassword() {
-  const { register, handleSubmit, setValue } = useForm();
+  const { register, handleSubmit } = useForm();
   const [step, setStep] = useState(1); // 1: email input, 2: OTP verification, 3: new password input
   const [otp, setOtp] = useState('');
   const [email, setEmail] = useState('');
-
+  const navigate = useNavigate();
   const handleEmailSubmit = async (data) => {
     try {
-      const response = await axios.post(
+      await axios.post(
         `${process.env.REACT_APP_BASE_ROUTE}/forgotPassword`,
         { email: data.email }
       );
@@ -35,12 +37,13 @@ function ForgotPassword() {
 
   const handleNewPasswordSubmit = async (data) => {
     try {
-      const response = await axios.put(
+       await axios.put(
         `${process.env.REACT_APP_BASE_ROUTE}/resetPassword`,
         { email, password: data.password }
       );
       toast.success('Password updated successfully');
-      setStep(1);
+      //setStep(1);
+      navigate("/")
     } catch (error) {
       console.error('Error resetting password:', error);
       toast.error('Failed to reset password');

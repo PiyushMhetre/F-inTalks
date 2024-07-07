@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useDataContext } from "../DataContext";
 
@@ -44,7 +44,7 @@ export default function NotificationPage() {
       {
         loginFlag ? (
               <div className="min-h-screen bg-customGray">
-      {/* <FeedHeader /> */}
+     
       <div className="mt-1 flex flex-col items-center w-full">
         <div className="bg-white w-full max-w-2xl p-4 rounded-lg shadow-md">
           <ul>
@@ -59,7 +59,7 @@ export default function NotificationPage() {
                 
                 <div className="flex justify-between items-center p-4 ">
                   <div className="flex gap-3"> 
-                  <img src={notification.fromUser.profilePicture} loading="lazy" className=" h-10 w-10 rounded-full"/>
+                  <img src={notification.fromUser.profilePicture} alt="profile pic" loading="lazy" className=" h-10 w-10 rounded-full"/>
                   <span className=" mt-[6px]  from-stone-900 ">{notification.message}</span>
                 </div>
                   <span className="text-xs text-gray-500">

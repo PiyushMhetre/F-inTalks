@@ -1,10 +1,11 @@
-import react, { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 import { BsThreeDots } from "react-icons/bs";
 import { FaRegTrashCan } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { useDataContext } from "../DataContext";
+import { Toaster, toast } from "react-hot-toast";
+
 
 export default function Comment({
   comment,
@@ -21,7 +22,7 @@ export default function Comment({
 
   async function deleteComment(commentId) {
     try {
-      const response = await axios.delete(
+       await axios.delete(
         `${process.env.REACT_APP_BASE_ROUTE}/deleteComment/${commentId}`,
         {
           withCredentials: true,
@@ -30,6 +31,15 @@ export default function Comment({
       // Update replies state to remove deleted comment
       setReplies(replies.filter((reply) => reply._id !== commentId));
       getAllComments(); // Still call getAllComments for parent component updates
+       toast.success("Comment deleted !", {
+        style: {
+          boxShadow: "none",
+          border: "1px solid #e0e0e0",
+          padding: "10px",
+          color: "#333",
+          backgroundColor: "#fff",
+        },
+      });
     } catch (error) {
       console.error(error); // Handle errors
     }
@@ -37,6 +47,7 @@ export default function Comment({
 
   return (
     <div className=" flex-col">
+    <Toaster/>
       <div className="m-2 mt-3 flex gap-3">
         <Link
           to={`/profile/${comment.postedBy.name}`}

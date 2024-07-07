@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BsLinkedin } from "react-icons/bs";
 import axios from "axios";
@@ -11,19 +11,15 @@ import "../App.css";
 import { CiCamera } from "react-icons/ci";
 import { RxCross2 } from "react-icons/rx";
 import { BsThreeDots } from "react-icons/bs";
-import { useCookies } from "react-cookie";
 import { useForm } from "react-hook-form";
 import { Toaster, toast } from "react-hot-toast";
 
 Modal.setAppElement("#root"); // This is to avoid screen readers issues
 
 export default function ProfilePage() {
-  const [qnaFlag, setQnaFlag] = useState(false);
   const {
     userBlogs,
     userQnAs,
-    setUserBlogs,
-    setUserQnAs,
     userId,
     userInfo,
     savedPosts,
@@ -36,24 +32,32 @@ export default function ProfilePage() {
   const [isCropModalOpen, setIsCropModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
-  const [croppedImage, setCroppedImage] = useState(null);
+  // const [ ,setCroppedImage] = useState(null);
   const [zoom, setZoom] = useState(1); // State for zoom level in Cropper
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [cookies, setCookie, removeCookie] = useCookies(["token"]);
-  const { register, handleSubmit, setValue } = useForm();
+  const { register, handleSubmit } = useForm();
   const [isEditFormOpen, setIsEditFormOpen] = useState(false);
   const navigate = useNavigate();
 
   async function setProfile({ profileUrl }) {
     try {
-      const res = await axios.put(
+        await axios.put(
         `${process.env.REACT_APP_BASE_ROUTE}/setProfile`,
         {
           data: userId,
           profile: profileUrl,
         }
       );
+       toast.success("Profile picture updated !", {
+        style: {
+          boxShadow: "none",
+          border: "1px solid #e0e0e0",
+          padding: "10px",
+          color: "#333",
+          backgroundColor: "#fff",
+        },
+      });
     } catch (error) {
       console.error("error in updating user profile", error);
     }
@@ -87,7 +91,7 @@ export default function ProfilePage() {
         selectedImage,
         croppedAreaPixels
       );
-      setCroppedImage(croppedImage);
+      // setCroppedImage(croppedImage);
       setIsCropModalOpen(false);
       // Now you can upload the croppedImage to the server and update the user's profile picture
       const formData = new FormData();
@@ -132,7 +136,7 @@ export default function ProfilePage() {
 
   const handleFormSubmit = async (data) => {
     try {
-      const response = await axios.put(
+       await axios.put(
         `${process.env.REACT_APP_BASE_ROUTE}/updateProfile`,
         { userId: userId, ...data }
       );

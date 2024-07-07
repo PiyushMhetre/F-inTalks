@@ -1,11 +1,11 @@
-import React, { useContext, useEffect } from "react";
+import React, {  useEffect } from "react";
 import { BiLike } from "react-icons/bi";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { BiCommentDetail } from "react-icons/bi";
 import Comment from "./Comment.js";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { BsThreeDots } from "react-icons/bs";
 import { FaRegTrashCan } from "react-icons/fa6";
 import { useDataContext } from "../DataContext.js";
@@ -114,7 +114,7 @@ export default function Card({ blog, flag }) {
         userId: userId,
       };
       try {
-        const response = await axios.put(
+          await axios.put(
           `${process.env.REACT_APP_BASE_ROUTE}/postComment`,
           newData
         );
@@ -190,7 +190,7 @@ export default function Card({ blog, flag }) {
 
   async function deleteBlog(blogId) {
     try {
-      const response = await axios.delete(
+       await axios.delete(
         `${process.env.REACT_APP_BASE_ROUTE}/deleteBlog/${blogId}`
       );
 
@@ -238,8 +238,6 @@ export default function Card({ blog, flag }) {
       console.error("error in saving post ", error);
     }
   }
-
-  const location = useLocation();
 
   const copyToClipboard = () => {
     const path = `/feed/${blog._id}`; // Construct the path with blog ID

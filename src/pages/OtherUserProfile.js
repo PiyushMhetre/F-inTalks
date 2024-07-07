@@ -2,9 +2,26 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { BsLinkedin } from "react-icons/bs";
 import axios from "axios";
-import icon from "../images/icon.jpg";
 import Card from "../components/Card.js";
 import { useDataContext } from "../DataContext.js";
+import { TailSpin } from "react-loader-spinner";
+
+const LoadingScreen = () => {
+  return (
+    <div className="flex justify-center items-center min-h-screen bg-white">
+      <TailSpin
+        visible={true}
+        height="80"
+        width="80"
+        color="#808080"
+        ariaLabel="tail-spin-loading"
+        radius="1"
+        wrapperStyle={{}}
+        wrapperClass=""
+      />
+    </div>
+  );
+};
 
 export default function OtherUserProfile() {
   const [name, setName] = useState("");
@@ -18,6 +35,7 @@ export default function OtherUserProfile() {
   const otherUserId = useLocation().state;
   const { allBlogs, allQA } = useDataContext();
   const [userProfile, setUserProfile] = useState();
+  const [loading, setLoading] = useState(true);
 
   const userId = otherUserId.userId._id;
 
@@ -34,6 +52,7 @@ export default function OtherUserProfile() {
       setCompany(res.data.data.company);
       setLinkedin(res.data.data.linkedin);
       setUserProfile(res.data.data.profilePicture);
+      setLoading(false);
     } catch (error) {
       // Handle error
       console.error("error in getting user info", error);
@@ -41,7 +60,7 @@ export default function OtherUserProfile() {
   }
 
   useEffect(() => {
-    if (otherUserId && allBlogs) {
+    if (userId && allBlogs) {
       const filteredBlogs = allBlogs.filter(
         (blog) => blog.author._id === userId && blog.type === "blog"
       );
@@ -51,7 +70,7 @@ export default function OtherUserProfile() {
       setQna(filteredQA);
       setBlogs(filteredBlogs);
     }
-  }, [allBlogs, allQA, otherUserId]);
+  }, [allBlogs, allQA, userId]);
 
   useEffect(() => {
     if (otherUserId) {
@@ -63,78 +82,86 @@ export default function OtherUserProfile() {
   }, [otherUserId]);
 
   return (
-    <div className="laptop:mt-16 mt-9 flex flex-col items-center min-h-screen relative  bg-customGray">
-      <div className="flex flex-col items-center mt-3 mx-[10%] laptop:mx-[20%] w-[80%] laptop:w-[60%] text-sm bg-white p-6 rounded-lg shadow-md">
-          <div className="flex items-center">
-            <img
-              src={userProfile}
-              alt="Profile"
-              className="h-24 w-24 rounded-full cursor-pointer border-4 border-white shadow-lg"
-            />
-            <div className="ml-6 flex flex-col items-start">
-              <div className="text-xl laptop:text-2xl font-semibold text-gray-900">
-                {name}
+    <div>
+      {loading ? (
+        <> <LoadingScreen/> </> 
+      ) : (
+        <div className="laptop:mt-16 mt-9 flex flex-col items-center min-h-screen relative  bg-customGray">
+          <div className="flex flex-col items-center mt-3 mx-[10%] laptop:mx-[20%] w-[80%] laptop:w-[60%] text-sm bg-white p-6 rounded-lg shadow-md">
+            <div className="flex items-center">
+              <img
+                src={userProfile}
+                alt="Profile"
+                className="h-24 w-24 rounded-full cursor-pointer border-4 border-white shadow-lg"
+              />
+              <div className="ml-6 flex flex-col items-start">
+                <div className="text-xl laptop:text-2xl font-semibold text-gray-900">
+                  {name}
+                </div>
+                <div className="text-lg text-gray-700">{company}</div>
+                <div className="text-md text-gray-600">{college}</div>
               </div>
-              <div className="text-lg text-gray-700">{company}</div>
-              <div className="text-md text-gray-600">{college}</div>
             </div>
+            {linkedin && (
+              <a
+                className="mt-4 text-blue-600 hover:underline self-end"
+                href={`https://${linkedin}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <BsLinkedin className="text-3xl" />
+              </a>
+            )}
           </div>
-          {linkedin && (
-            <a
-              className="mt-4 text-blue-600 hover:underline self-end"
-              href={`https://${linkedin}`}
-              target="_blank"
-              rel="noopener noreferrer"
+          <div className="mt-4 mb-2 w-[80%] border border-slate-200"></div>
+          <div className="flex gap-10">
+            <button
+              className={`flex items-center text-[0.7em] laptop:text-[1.2em] ${
+                selectedOption === "Blogs" ? "text-black" : "text-slate-400"
+              }`}
+              onClick={() => {
+                setSelectedOption("Blogs");
+                setQnaFlag(false);
+              }}
             >
-              <BsLinkedin className="text-3xl" />
-            </a>
-          )}
-        </div>
-      <div className="mt-4 mb-2 w-[80%] border border-slate-200"></div>
-      <div className="flex gap-10">
-        <button
-          className={`flex items-center text-[0.7em] laptop:text-[1.2em] ${
-            selectedOption === "Blogs" ? "text-black" : "text-slate-400"
-          }`}
-          onClick={() => {
-            setSelectedOption("Blogs");
-            setQnaFlag(false);
-          }}
-        >
-          Blogs
-        </button>
-        <button
-          className={`flex items-center text-[0.7em] laptop:text-[1.2em] ${
-            selectedOption === "qna" ? "text-black" : "text-slate-400"
-          }`}
-          onClick={() => {
-            setSelectedOption("qna");
-            setQnaFlag(true);
-          }}
-        >
-          QnA's
-        </button>
-      </div>
+              Blogs
+            </button>
+            <button
+              className={`flex items-center text-[0.7em] laptop:text-[1.2em] ${
+                selectedOption === "qna" ? "text-black" : "text-slate-400"
+              }`}
+              onClick={() => {
+                setSelectedOption("qna");
+                setQnaFlag(true);
+              }}
+            >
+              QnA's
+            </button>
+          </div>
 
-      <div className="laptop:w-[85%] w-full">
-        {qnaFlag
-          ? qna.length > 0 && qna.map((blog) => (
-              <Card
-                key={blog._id}
-                blog={blog}
-                userId={otherUserId}
-                flag={false}
-              />
-            ))
-          : blogs.length > 0 && blogs.map((blog) => (
-              <Card
-                key={blog._id}
-                blog={blog}
-                userId={otherUserId}
-                flag={true}
-              />
-            ))}
-      </div>
+          <div className="laptop:w-[85%] w-full">
+            {qnaFlag
+              ? qna.length > 0 &&
+                qna.map((blog) => (
+                  <Card
+                    key={blog._id}
+                    blog={blog}
+                    userId={otherUserId}
+                    flag={false}
+                  />
+                ))
+              : blogs.length > 0 &&
+                blogs.map((blog) => (
+                  <Card
+                    key={blog._id}
+                    blog={blog}
+                    userId={otherUserId}
+                    flag={true}
+                  />
+                ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

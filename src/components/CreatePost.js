@@ -2,6 +2,8 @@ import { IoClose } from "react-icons/io5";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useDataContext } from "../DataContext";
+import { Toaster, toast } from "react-hot-toast";
+
 
 export default function CreatePost({ onClose, getAllBlogs, flag }) {
   const { register, handleSubmit } = useForm();
@@ -9,13 +11,22 @@ export default function CreatePost({ onClose, getAllBlogs, flag }) {
   async function postContent(data) {
     try {
       data.type = flag ? "blog" : "qna";
-      const response = await axios.post(
+      await axios.post(
         `${process.env.REACT_APP_BASE_ROUTE}/postBlog`,
         data,
         {
           withCredentials: true,
         }
       );
+       toast.success("Blog posted !", {
+        style: {
+          boxShadow: "none",
+          border: "1px solid #e0e0e0",
+          padding: "10px",
+          color: "#333",
+          backgroundColor: "#fff",
+        },
+      });
     } catch (e) {
       console.error(e);
     }
@@ -25,6 +36,7 @@ export default function CreatePost({ onClose, getAllBlogs, flag }) {
 
   return (
     <div className="bg-white flex flex-col w-[16.5em] laptop:h-[25em] laptop:w-[40em] z-30 rounded-lg relative">
+      <Toaster/>
       <button className="absolute right-0" onClick={onClose}>
         <IoClose />
       </button>

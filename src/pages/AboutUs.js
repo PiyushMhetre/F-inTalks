@@ -1,6 +1,5 @@
 import React from "react";
 import { BsLinkedin } from "react-icons/bs";
-import { CiLinkedin } from "react-icons/ci";
 import { FaInstagram } from "react-icons/fa";
 
 export default function AboutUs() {

@@ -15,7 +15,6 @@ export default function FeedHeader() {
     newNotificationCount,
     allBlogs,
     allQA,
-    userId,
     setAllBlogs,
     setAllQA,
     userProfile,

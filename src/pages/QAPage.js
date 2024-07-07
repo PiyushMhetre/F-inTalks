@@ -1,7 +1,6 @@
 import React from "react";
-import {  useLocation } from "react-router-dom";
 import {Link} from 'react-router-dom'
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import CreatePost from "../components/CreatePost.js";
 import Card from "../components/Card.js";
 import { useDataContext } from "../DataContext";
@@ -10,9 +9,7 @@ export default function QAPage() {
   const [isCreatePostOpen, setIsCreatePostOpen] = useState(false);
   // const [userId, setUserId] = useState()//getting userId 
   // const [allBlogs, setAllblogs] = useState([]);
-  const location = useLocation();
-  const [notifiedBlog, setNotifiedBlog] = useState(null);
-  const { allQA, setAllBlogs, userId, loginFlag } = useDataContext();
+  const { allQA, userId, loginFlag } = useDataContext();
   function handleOpenCreatePost() {
     setIsCreatePostOpen(true);
   }
@@ -20,12 +17,7 @@ export default function QAPage() {
   function handleCloseCreatePost() {
     setIsCreatePostOpen(false);
   }
-  useEffect(() => {
-    if (location.state && location.state.NotifiedPost) {
-      setNotifiedBlog(location.state.NotifiedPost);
-      
-    }
-  }, [location.state]);
+  
 
   return (
     <div className="laptop:mt-16 mt-9">
