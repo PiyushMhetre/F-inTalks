@@ -149,7 +149,7 @@ export const DataProvider = ({ children }) => {
   useEffect(() => {
     if (loginFlag) {
       const token = localStorage.getItem("token");
-      const ws = new WebSocket(`ws://localhost:4000/socket?token=${token}`);
+      const ws = new WebSocket(`ws://172.31.43.44:4000/socket?token=${token}`);
 
       if (!token) {
         console.log("Token not found in local storage");
