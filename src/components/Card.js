@@ -173,7 +173,8 @@ export default function Card({ blog, flag }) {
         { data: userId }
       );
       setLikesCount(response.data.updatedBlog.likes.length);
-      toast.success("Like added !", {
+      if(response.data.message === "Like successful"){
+        toast.success("Like added !", {
           style: {
             boxShadow: "none",
             border: "1px solid #e0e0e0",
@@ -182,6 +183,7 @@ export default function Card({ blog, flag }) {
             backgroundColor: "#fff",
           },
         });
+      }      
       return likesCount;
     } catch (error) {
       console.error("Error getting in handling likes :", error);
