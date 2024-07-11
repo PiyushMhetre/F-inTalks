@@ -61,7 +61,8 @@ export default function LoginPage() {
       <LoginHeader />
 
       <div className="slogan font-thin text-red-700 absolute laptop:mt-20 desktop:mt-20 laptop:text-2xl desktop:text-5xl text-xl">
-        Empower Your Career Journey <div className="laptop:p-1"> </div> with Shared Experiences!
+        Empower Your Career Journey <div className="laptop:p-1"> </div> with
+        Shared Experiences!
       </div>
 
       <div className="laptop:flex mt-16 justify-between ">
@@ -74,13 +75,13 @@ export default function LoginPage() {
             <div className="mb-6">
               <label
                 htmlFor="email"
-                className="text-base font-medium text-gray-700 dark:text-gray-200"
+                className="text-base font-medium text-gray-700"
               >
                 Email
               </label>
               <input
                 id="email"
-                className="flex mt-1 h-12 w-[21em] laptop:w-[24em] desktop:w-[30em] rounded-md border border-gray-400 bg-transparent py-2 px-3 text-sm text-gray-700 placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-700 dark:text-gray-700 dark:placeholder:text-gray-500 dark:focus:ring-gray-400 dark:focus:ring-offset-gray-900"
+                className="flex mt-1 h-12 w-[21em] laptop:w-[24em] desktop:w-[30em] rounded-md border border-gray-400 bg-transparent py-2 px-3 text-sm text-gray-700 placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                 type="email"
                 placeholder="Enter your email"
                 {...register("email", { required: true })}
@@ -91,13 +92,13 @@ export default function LoginPage() {
             <div className="mb-9">
               <label
                 htmlFor="password"
-                className="text-base font-medium text-gray-700 dark:text-gray-200"
+                className="text-base font-medium text-gray-700"
               >
                 Password
               </label>
               <input
                 id="password"
-                className={`flex mt-1 h-12 w-[21em] laptop:w-[24em] desktop:w-[30em] rounded-md border border-gray-400 bg-transparent py-2 px-3 text-sm text-gray-700 placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:opacity-50 dark:border-gray-700 dark:text-gray-700 dark:placeholder:text-gray-500 dark:focus:ring-gray-400 dark:focus:ring-offset-gray-900 ${
+                className={`flex mt-1 h-12 w-[21em] laptop:w-[24em] desktop:w-[30em] rounded-md border border-gray-400 bg-transparent py-2 px-3 text-sm text-gray-700 placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:opacity-50 ${
                   errors.password || errors.email ? "border-red-500" : ""
                 }`}
                 type="password"
