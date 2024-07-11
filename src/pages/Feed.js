@@ -6,7 +6,7 @@ import { FaArrowUpLong } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 export default function Feed() {
   const [isCreatePostOpen, setIsCreatePostOpen] = useState(false);
-  const { allBlogs, userId, blogNotificationFlag, setBlogNotificationFlag, loginFlag } = useDataContext();
+  const { allBlogs, userId, blogNotificationFlag, setBlogNotificationFlag, loginFlag, fetchData } = useDataContext();
   function handleOpenCreatePost() {
     setIsCreatePostOpen(true);
   }
@@ -55,7 +55,7 @@ export default function Feed() {
          shadow-md cursor-pointer z-50" onClick={()=>{
           setBlogNotificationFlag(false)
           window.scrollTo({ top: 0, behavior: 'smooth' })
-          // fetchData() //first check that notifications are adding the blog on the top rightfully or not
+          fetchData() //first check that notifications are adding the blog on the top rightfully or not
          }}>
           New blog <span className="mt-[4.5px]  text-xs"><FaArrowUpLong/></span>
         </div>

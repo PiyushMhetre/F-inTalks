@@ -106,6 +106,7 @@ export const DataProvider = ({ children }) => {
   }, []);
 
   const fetchData = async () => {
+    console.log("calling function ")
     try {
       const response = await axios.get(
         `${process.env.REACT_APP_BASE_ROUTE}/getBlogs`,
@@ -173,17 +174,16 @@ export const DataProvider = ({ children }) => {
           if (messageObject.type === "newBlog") {
             setBlogNotificationFlag(true);
             if(messageObject.post.type === 'blog'){
-              // console.log("blog from noti",messageObject.post)
-              setAllBlogs((preBlogs) => [
-              messageObject.post,
-              ...preBlogs
-              ])
+              // setAllBlogs((preBlogs) => [
+              // messageObject.post,
+              // ...preBlogs
+              // ])
             }
             else{
-              setAllQA((allqas) => [
-                 messageObject.post,
-                 ...allqas
-              ])
+              // setAllQA((allqas) => [
+              //    messageObject.post,
+              //    ...allqas
+              // ])
             }
             
           }
