@@ -49,7 +49,7 @@ export default function SingleBlog() {
   }, [blogId]);
 
   return (
-    <div className="mt-16  min-h-screen bg-customGray  ">
+    <div className="laptop:mt-16 mt-9  min-h-screen bg-customGray  ">
       {flag ? (
         <Card key={blog._id} blog={blog} flag={true} />
       ) : (

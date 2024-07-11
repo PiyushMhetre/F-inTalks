@@ -53,7 +53,6 @@ export const DataProvider = ({ children }) => {
   };
 
   const sentCookie = async () => {
-    console.log("sending cookie");
     try {
       const response = await axios.get(
         `${process.env.REACT_APP_BASE_ROUTE}/protected`,
