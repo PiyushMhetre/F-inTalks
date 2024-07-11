@@ -69,71 +69,72 @@ export default function LoginPage() {
       <div className="laptop:flex mt-16 justify-between ">
         <div>
           <form
-            className=" mt-10 laptop:mt-32 desktop:mt-40  "
-            onSubmit={handleSubmit(handleLogin)}
-          >
-            {/* email  */}
-            <div className="mb-6">
-              <label
-                htmlFor="email"
-                className="text-base  font-medium text-gray-700 dark:text-gray-200"
-              >
-                Email
-              </label>
-              <input
-                id="email"
-                className="flex mt-1 h-12 w-[21em] laptop:w-[24em] desktop:w-[30em]  rounded-md border border-gray-400 bg-transparent py-2 px-3 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-700 dark:text-gray-50 dark:focus:ring-gray-400 dark:focus:ring-offset-gray-900"
-                type="email"
-                placeholder="enter your email"
-                {...register("email", { required: true })}
-              />
-            </div>
+  className="mt-10 laptop:mt-32 desktop:mt-40"
+  onSubmit={handleSubmit(handleLogin)}
+>
+  {/* email  */}
+  <div className="mb-6">
+    <label
+      htmlFor="email"
+      className="text-base font-medium text-gray-700 dark:text-gray-200"
+    >
+      Email
+    </label>
+    <input
+      id="email"
+      className="flex mt-1 h-12 w-[21em] laptop:w-[24em] desktop:w-[30em] rounded-md border border-gray-400 bg-transparent py-2 px-3 text-sm text-gray-700 placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-700 dark:text-gray-50 dark:placeholder:text-gray-500 dark:focus:ring-gray-400 dark:focus:ring-offset-gray-900"
+      type="email"
+      placeholder="Enter your email"
+      {...register("email", { required: true })}
+    />
+  </div>
 
-            {/* password */}
-            <div className="mb-9">
-              <label
-                htmlFor="name"
-                className="text-base mb-9 font-medium text-gray-700 dark:text-gray-200"
-              >
-                Passord
-              </label>
+  {/* password */}
+  <div className="mb-9">
+    <label
+      htmlFor="password"
+      className="text-base font-medium text-gray-700 dark:text-gray-200"
+    >
+      Password
+    </label>
+    <input
+      id="password"
+      className={`flex mt-1 h-12 w-[21em] laptop:w-[24em] desktop:w-[30em] rounded-md border border-gray-400 bg-transparent py-2 px-3 text-sm text-gray-700 placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:opacity-50 dark:border-gray-700 dark:text-gray-50 dark:placeholder:text-gray-500 dark:focus:ring-gray-400 dark:focus:ring-offset-gray-900 ${
+        errors.password || errors.email ? "border-red-500" : ""
+      }`}
+      type="password"
+      placeholder="Password"
+      {...register("password", { required: true })}
+    />
+    {loginError && (
+      <span className="absolute text-sm text-red-500">
+        {loginError}
+      </span>
+    )}
+  </div>
 
-              <input
-                className={`flex mt-1 h-12 w-[21em] laptop:w-[24em] desktop:w-[30em]  rounded-md border border-gray-400 bg-transparent px-3 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:opacity-50 dark:border-gray-700 dark:text-gray-50 dark:focus:ring-gray-400 dark:focus:ring-offset-gray-900 ${
-                  errors.password || errors.email ? "border-red-500" : ""
-                }`}
-                type="password"
-                placeholder="password"
-                {...register("password", { required: true })}
-              />
-              {loginError && (
-                <span className="absolute text-sm text-red-500">
-                  {loginError}
-                </span>
-              )}
-            </div>
+  <button
+    type="submit"
+    className="inline-flex h-12 w-[18.5em] laptop:w-[21em] desktop:w-[26.5em] items-center justify-center rounded-md bg-indigo-600 text-base font-semibold leading-7 text-white hover:bg-indigo-500"
+  >
+    Login
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="currentColor"
+      className="ml-2 h-4 w-4"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
+      />
+    </svg>
+  </button>
+</form>
 
-            <button
-              type="submit"
-              className="inline-flex h-12 w-[18.5em] laptop:w-[21em] desktop:w-[26.5em] items-center justify-center rounded-md bg-indigo-600  text-base font-semibold leading-7 text-white hover:bg-indigo-500"
-            >
-              Login
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="ml-2 h-4 w-4"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
-                />
-              </svg>
-            </button>
-          </form>
 
           <div className="flex justify-end mt-4">
             <Link
