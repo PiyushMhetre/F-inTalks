@@ -13,6 +13,7 @@ import { FiEdit } from "react-icons/fi";
 import { IoBookmarkOutline } from "react-icons/io5";
 import { Toaster, toast } from "react-hot-toast";
 import { RxCopy } from "react-icons/rx";
+import DOMPurify from 'dompurify';
 
 export default function Card({ blog, flag }) {
   const name = blog.author.name;
@@ -263,7 +264,8 @@ export default function Card({ blog, flag }) {
       }); // Copy full URL to clipboard
     setDropDown(false);
   };
-
+   const sanitizedContent = DOMPurify.sanitize(content);
+   const formattedContent = sanitizedContent.replace(/\n/g, '<br>');
   return (
     <div className="my-2 mx-[10%] laptop:mx-[15%] text-sm bg-white  rounded-md shadow-md">
       <Toaster />
@@ -393,9 +395,10 @@ export default function Card({ blog, flag }) {
       <div className="mukta-regular mt-3 laptop:text-base font-semibold mb-1">
         {blog.title}
       </div>
-      <div className={`w-full laptop:text-base ${flag ? "font-normal" : "font-semibold"}`}>
-        {content}
-      </div>
+      <div
+        className={`w-full laptop:text-base ${flag ? 'font-normal' : 'font-semibold'}`}
+        dangerouslySetInnerHTML={{ __html: formattedContent }}
+      ></div>
     </>
   )}
 </div>
