@@ -89,7 +89,7 @@ export const DataProvider = ({ children }) => {
     }
   };
 
-  //notification counr 
+  //notification count
   useEffect(() => {
     const unreadCount = notifications.filter(
       (notification) => !notification.read
@@ -106,7 +106,6 @@ export const DataProvider = ({ children }) => {
   }, []);
 
   const fetchData = async () => {
-    console.log("calling function ")
     try {
       const response = await axios.get(
         `${process.env.REACT_APP_BASE_ROUTE}/getBlogs`,

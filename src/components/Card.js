@@ -269,146 +269,137 @@ export default function Card({ blog, flag }) {
       <Toaster />
 
       {/* title and content */}
-      <div className=" text-sm p-4">
-        <div className="flex justify-between ">
-          <Link
-            to={`/profile/${name}`}
-            state={{ userId: blog.author }}
-            className=".dm-sans text-[1.1em] laptop:text-lg font-bold flex gap-2 py-4"
-          >
-            {/* profile and name  */}
-            <img
-              src={profile}
-              loading="lazy"
-              alt=""
-              className=" h-12 w-12 rounded-full"
-            />
-            <div className="mt-1.5 flex flex-col">
-              {" "}
-              {name}
-              <span className=" text-xs text-gray-600 font-normal">
-                {formatTimeDifference(new Date(blog.createAt))}
-              </span>
-            </div>
-          </Link>
-          <div className="flex gap-2 laptop:gap-4  z-0 laptop:text-lg relative">
-            <button
-              className="grid grid-flow-col gap-1 absolute z-0 -left-12 top-1 items-center"
-              onClick={
-                // likeFlagSetter()
-                handleLike
-              }
-            >
-              <div className="text-sm">{likesCount}</div>
-              <BiLike className="text-xl text-blue-500" />
-            </button>
+      <div className="text-sm p-4">
+  <div className="flex justify-between">
+    <Link
+      to={`/profile/${name}`}
+      state={{ userId: blog.author }}
+      className="dm-sans text-[1.1em] laptop:text-lg font-bold flex gap-2 py-4"
+    >
+      <img
+        src={profile}
+        loading="lazy"
+        alt=""
+        className="h-12 w-12 rounded-full"
+      />
+      <div className="mt-1.5 flex flex-col">
+        {name}
+        <span className="text-xs text-gray-600 font-normal">
+          {formatTimeDifference(new Date(blog.createAt))}
+        </span>
+      </div>
+    </Link>
+    <div className="flex gap-2 laptop:gap-4 z-0 laptop:text-lg relative">
+      <button
+        className="grid grid-flow-col gap-1 absolute z-0 -left-12 top-1 items-center"
+        onClick={handleLike}
+      >
+        <div className="text-sm">{likesCount}</div>
+        <BiLike className="text-xl text-blue-500" />
+      </button>
 
-            <div className="relative">
-              <button
-                onClick={() => setDropDown(!dropDown)}
-                className="text-xl text-gray-500 hover:text-gray-700 mt-1"
-              >
-                <BsThreeDots />
-              </button>
+      <div className="relative">
+        <button
+          onClick={() => setDropDown(!dropDown)}
+          className="text-xl text-gray-500 hover:text-gray-700 mt-1"
+        >
+          <BsThreeDots />
+        </button>
 
-              {dropDown && (
-                <div className="absolute laptop:text-base text-xs w-52 right-0 z-50 mt-2 border p-1 rounded-lg bg-white shadow-lg">
-                  <div className="flex flex-col gap-1 px-2 py-1">
-                    {blogOwnerId === userId && (
-                      <>
-                        <div
-                          className="flex items-center gap-1 cursor-pointer  hover:bg-red-100 p-1 rounded"
-                          onClick={() => {
-                            deleteBlog(blog._id);
-                            setDropDown(false);
-                          }}
-                        >
-                          <FaRegTrashCan className="mr-1" />
-                          Delete Blog
-                        </div>
-                        <div
-                          className="flex items-center gap-1 cursor-pointer  hover:bg-blue-100 p-1 rounded"
-                          onClick={() => {
-                            setIsEditing(true);
-                            setDropDown(false);
-                          }}
-                        >
-                          <FiEdit />
-                          Edit Blog
-                        </div>
-                      </>
-                    )}
-                    <div
-                      className="flex items-center gap-1 cursor-pointer  hover:bg-green-100 p-1 rounded"
-                      onClick={copyToClipboard}
-                    >
-                      <RxCopy className="mr-1" />
-                      Copy link to post
-                    </div>
-                    {}
-                    {blogOwnerId !== userId && (
-                      <div
-                        className="flex items-center gap-1 cursor-pointer  hover:bg-yellow-100 p-1 rounded"
-                        onClick={() => {
-                          savePost(blog._id);
-                        }}
-                      >
-                        <IoBookmarkOutline className="mr-1 mt-1" />
-                        Save
-                      </div>
-                    )}
+        {dropDown && (
+          <div className="absolute laptop:text-base text-xs w-52 right-0 z-50 mt-2 border p-1 rounded-lg bg-white shadow-lg">
+            <div className="flex flex-col gap-1 px-2 py-1">
+              {blogOwnerId === userId && (
+                <>
+                  <div
+                    className="flex items-center gap-1 cursor-pointer hover:bg-red-100 p-1 rounded"
+                    onClick={() => {
+                      deleteBlog(blog._id);
+                      setDropDown(false);
+                    }}
+                  >
+                    <FaRegTrashCan className="mr-1" />
+                    Delete Blog
                   </div>
+                  <div
+                    className="flex items-center gap-1 cursor-pointer hover:bg-blue-100 p-1 rounded"
+                    onClick={() => {
+                      setIsEditing(true);
+                      setDropDown(false);
+                    }}
+                  >
+                    <FiEdit />
+                    Edit Blog
+                  </div>
+                </>
+              )}
+              <div
+                className="flex items-center gap-1 cursor-pointer hover:bg-green-100 p-1 rounded"
+                onClick={copyToClipboard}
+              >
+                <RxCopy className="mr-1" />
+                Copy link to post
+              </div>
+              {blogOwnerId !== userId && (
+                <div
+                  className="flex items-center gap-1 cursor-pointer hover:bg-yellow-100 p-1 rounded"
+                  onClick={() => {
+                    savePost(blog._id);
+                  }}
+                >
+                  <IoBookmarkOutline className="mr-1 mt-1" />
+                  Save
                 </div>
               )}
             </div>
-            <div></div>
           </div>
-        </div>
-
-        {isEditing ? (
-          <form onSubmit={handleSubmit(handleUpdateBlog)}>
-            <input
-              type="text"
-              defaultValue={blog.title}
-              {...register("title")}
-              className="w-full border p-2 mb-2 "
-            />
-            <textarea
-              defaultValue={blog.content}
-              {...register("content", { required: true })}
-              className="w-full h-72 border p-2 mb-2"
-            />
-            <div className="flex justify-end gap-2">
-              <button
-                type="button"
-                onClick={() => setIsEditing(false)}
-                className="px-3 py-1 border text-xs laptop:text-sm rounded-sm bg-slate-200"
-              >
-                Cancel
-              </button>
-              <button
-                type="submit"
-                className="px-3 py-1 border text-xs laptop:text-sm rounded-sm bg-slate-200"
-              >
-                Update
-              </button>
-            </div>
-          </form>
-        ) : (
-          <>
-            <div className="mukta-regular mt-3 laptop:text-base font-semibold mb-1">
-              {blog.title}
-            </div>
-            <div
-              className={`laptop:text-base ${
-                flag ? ` font-normal` : `font-semibold`
-              }`}
-            >
-              {content}
-            </div>
-          </>
         )}
       </div>
+    </div>
+  </div>
+
+  {isEditing ? (
+    <form onSubmit={handleSubmit(handleUpdateBlog)}>
+      <input
+        type="text"
+        defaultValue={blog.title}
+        {...register("title")}
+        className="w-full border p-2 mb-2"
+      />
+      <textarea
+        defaultValue={blog.content}
+        {...register("content", { required: true })}
+        className="w-full h-72 border p-2 mb-2 resize-none"
+        style={{ maxHeight: "18rem" }} // Limiting height to avoid overflow
+      />
+      <div className="flex justify-end gap-2">
+        <button
+          type="button"
+          onClick={() => setIsEditing(false)}
+          className="px-3 py-1 border text-xs laptop:text-sm rounded-sm bg-slate-200"
+        >
+          Cancel
+        </button>
+        <button
+          type="submit"
+          className="px-3 py-1 border text-xs laptop:text-sm rounded-sm bg-slate-200"
+        >
+          Update
+        </button>
+      </div>
+    </form>
+  ) : (
+    <>
+      <div className="mukta-regular mt-3 laptop:text-base font-semibold mb-1">
+        {blog.title}
+      </div>
+      <div className={`w-full laptop:text-base ${flag ? "font-normal" : "font-semibold"}`}>
+        {content}
+      </div>
+    </>
+  )}
+</div>
+
 
       {/* comment */}
       <>

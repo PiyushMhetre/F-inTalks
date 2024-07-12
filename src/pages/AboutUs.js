@@ -4,7 +4,7 @@ import { FaInstagram } from "react-icons/fa";
 
 export default function AboutUs() {
   return (
-    <div className="  bg-customGray absolute top-0 bottom-0">
+    <div className="  bg-customGray absolute h-full ">
       <div class="flex flex-col  mt-20 mx-[10%] laptop:mx-[20%] w-[80%] laptop:w-[60%] text-sm bg-white  p-6 rounded-lg shadow-md">
         <div class="mb-6">
           <h1 class="text-3xl font-bold text-gray-900">Welcome to INTALKS !</h1>
@@ -48,12 +48,12 @@ export default function AboutUs() {
         </div>
       </div> */}
         <div class="">
-          <h2 class="text-xl font-bold text-gray-900">Contact</h2>
+          <h2 class="text-xl  font-bold text-gray-900">Contact</h2>
           <p class="mt-2 text-gray-700 text-lg">
             You can reach out to me directly at{" "}
             <a
               href="mailto:piyushmhetre9596@gmail.com"
-              class="text-blue-600 hover:underline"
+              class="text-blue-600 hover:underline mobile:text-sm laptop:text-xl"
             >
               piyushmhetre9596@gmail.com
             </a>

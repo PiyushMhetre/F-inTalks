@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, {  useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../images/Logo.jpg";
 import icon from "../images/icon.jpg";
@@ -21,7 +21,14 @@ export default function FeedHeader() {
   } = useDataContext();
   const navigate = useNavigate();
   const [query, setQuery] = useState("");
+  const [profile, setProfile] = useState("http://res.cloudinary.com/dicevyk4v/image/upload/v1718561564/wbdquq18b6sy8e7uu1en.jpg")
 
+  useEffect(() => {
+    if(userProfile){
+
+    setProfile(userProfile)
+    }
+  }, [userProfile])
   const handleNotificationClick = (e) => {
     setSelectedOption("Notifications");
     navigate("/notificaiton");
@@ -74,7 +81,7 @@ export default function FeedHeader() {
   };
 
   return (
-    <div className="  ">
+    <div className=" ">
       <div className="w-full fixed top-0 z-10 shadow-md laptop:p-1 flex justify-around bg-white">
       <div className="flex gap-6 desktop:gap-60 laptop:gap-28 laptop:justify-between mt-1">
         <div className="laptop:h-8 flex gap-2 laptop:gap-2">
@@ -108,7 +115,7 @@ export default function FeedHeader() {
           </div>
         </div>
 
-        <div className="flex gap-3 laptop:gap-3 desktop:gap-7 h-5 laptop:h-12 text-xs mt-1">
+        <div className="flex gap-1 laptop:gap-3 desktop:gap-7 h-5 laptop:h-12 text-xs mt-1">
           <Link
             to="/feed"
             className={`flex items-center text-[0.8em] laptop:text-[1.3em] font-semibold ${
@@ -162,7 +169,7 @@ export default function FeedHeader() {
             <img
               src={userProfile}
               alt="Profile"
-              className="h-7 w-7 laptop:h-9 laptop:w-9 rounded-full cursor-pointer border-2 shadow-lg"
+              className="h-5 w-5 laptop:h-9 laptop:w-9 rounded-full cursor-pointer border-2 shadow-lg"
             />
           </Link>
 

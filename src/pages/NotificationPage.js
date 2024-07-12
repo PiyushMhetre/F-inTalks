@@ -14,10 +14,10 @@ export default function NotificationPage() {
   } = useDataContext();
 
   useEffect(() => {
-    if(newNotificationCount > 0){
+    
     updateNotifications(); //make call to make the notifications as read if()
     setNewNotificationCount(0)
-    }
+    
   },[])
 
   useEffect(() => {

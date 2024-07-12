@@ -39,7 +39,8 @@ function ForgotPassword() {
     try {
        await axios.put(
         `${process.env.REACT_APP_BASE_ROUTE}/resetPassword`,
-        { email, password: data.password }
+        { email, password: data.password, otp: otp },
+        console.log("data", data)
       );
       toast.success('Password updated successfully');
       //setStep(1);

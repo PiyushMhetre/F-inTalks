@@ -32,7 +32,6 @@ export default function ProfilePage() {
   const [isCropModalOpen, setIsCropModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
-  // const [ ,setCroppedImage] = useState(null);
   const [zoom, setZoom] = useState(1); // State for zoom level in Cropper
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -159,7 +158,7 @@ export default function ProfilePage() {
   return (
     <>
       <Toaster />
-      <div className=" min-h-screen relative  bg-customGray">
+      <div className=" min-h-screen relative  bg-customGray overflow-x-hidden ">
         <div className="laptop:mt-16 mt-9">
           {loginFlag ? (
             <div className="">

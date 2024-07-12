@@ -32,7 +32,13 @@ export default function LoginPage() {
       );
 
       if (!response.ok) {
+        if(response.status === 401){
         setLoginError("Invalid email or password");
+        }
+        if(response.status === 403){
+          setLoginError("OTP not verified, please sign up again");
+        }
+
         return;
       }
       const responseData = await response.json();
