@@ -23,12 +23,12 @@ export default function AboutUs() {
           <p class="mt-2 text-gray-700 text-lg">
             For any suggestions or feedback contact{" "}
             <a
-              href="mailto:support@intalks.com"
+              href="mailto:intalks.service@gmail.com"
               class="text-blue-600 hover:underline"
             >
               intalks.service@gmail.com
             </a>
-            .
+            
           </p>
         </div>
         {/* <h2 class="text-2xl font-bold text-gray-900">Founder</h2>
@@ -57,7 +57,7 @@ export default function AboutUs() {
             >
               piyushmhetre9596@gmail.com
             </a>
-            .
+            
           </p>
         </div>
         <div className="self-end flex gap-3">
