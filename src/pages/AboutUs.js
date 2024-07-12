@@ -26,7 +26,7 @@ export default function AboutUs() {
               href="mailto:support@intalks.com"
               class="text-blue-600 hover:underline"
             >
-              support@intalks.com
+              intalks.service@gmail.com
             </a>
             .
           </p>
