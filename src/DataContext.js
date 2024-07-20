@@ -145,8 +145,7 @@ export const DataProvider = ({ children }) => {
   }, [userId, allBlogs]);
 
   //websocket connection
-  useEffect(() => {
-    if (loginFlag) {
+  const WebSocketConnection = () => {    
       const token = localStorage.getItem("token");
       const ws = new WebSocket(`wss://intalks.co.in/socket?token=${token}`);
 
@@ -216,6 +215,11 @@ export const DataProvider = ({ children }) => {
         console.error("Error establishing WebSocket connection:", error);
       }
     }
+  
+  useEffect(() => {
+    if (loginFlag) {
+      WebSocketConnection()
+      }
   }, [loginFlag]);
 
 
@@ -300,9 +304,10 @@ export const DataProvider = ({ children }) => {
     savedPosts,
     userProfile,
     formatTimeDifference,
+    WebSocketConnection
   };
 
   return (
     <DataContext.Provider value={contextValue}>{children}</DataContext.Provider>
   );
-};
+}

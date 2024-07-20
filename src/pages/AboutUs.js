@@ -50,17 +50,17 @@ export default function AboutUs() {
         <div class="">
           <h2 class="text-xl  font-bold text-gray-900">Contact</h2>
           <p class="mt-2 text-gray-700 text-lg">
-            You can reach out to me directly at{" "}
+            Email :{" "}
             <a
               href="mailto:piyushmhetre9596@gmail.com"
-              class="text-blue-600 hover:underline mobile:text-sm laptop:text-xl"
+              class="text-blue-600 hover:underline text-lg  "
             >
               piyushmhetre9596@gmail.com
             </a>
             
           </p>
         </div>
-        <div className="self-end flex gap-3">
+        <div className="self-end flex gap-3 pt-4 laptop:pt-0">
           <div className="mt-[1px]">
             <a
               className="mt-4  hover:underline  "

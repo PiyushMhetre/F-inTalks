@@ -14,6 +14,7 @@ import { IoBookmarkOutline } from "react-icons/io5";
 import { Toaster, toast } from "react-hot-toast";
 import { RxCopy } from "react-icons/rx";
 import DOMPurify from 'dompurify';
+import '../App.css'
 
 export default function Card({ blog, flag }) {
   const name = blog.author.name;
@@ -264,8 +265,23 @@ export default function Card({ blog, flag }) {
       }); // Copy full URL to clipboard
     setDropDown(false);
   };
-   const sanitizedContent = DOMPurify.sanitize(content);
-   const formattedContent = sanitizedContent.replace(/\n/g, '<br>');
+  const sanitizedContent = DOMPurify.sanitize(content);
+
+  // Convert URLs to clickable links but temporarily preserve line breaks
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+  let contentWithLinks = sanitizedContent.replace(
+    urlRegex,
+    '<a href="$1" target="_blank" rel="noopener noreferrer" class="content-link">$1</a>'
+  );
+
+  // Convert newlines to a unique placeholder to avoid affecting URLs
+  contentWithLinks = contentWithLinks.replace(/\n/g, '<!-- NEWLINE -->');
+
+  // Replace the placeholder with <br> tags
+  const formattedContent = contentWithLinks.replace(/<!-- NEWLINE -->/g, '<br>');
+
+  // Replace the placeholder with <br> tags
+
   return (
     <div className="my-2 mx-[10%] laptop:mx-[15%] text-sm bg-white  rounded-md shadow-md">
       <Toaster />
@@ -396,9 +412,9 @@ export default function Card({ blog, flag }) {
         {blog.title}
       </div>
       <div
-        className={`w-full laptop:text-base ${flag ? 'font-normal' : 'font-semibold'}`}
-        dangerouslySetInnerHTML={{ __html: formattedContent }}
-      ></div>
+      className={`w-full laptop:text-base ${flag ? 'font-normal' : 'font-semibold'}`}
+      dangerouslySetInnerHTML={{ __html: formattedContent }}
+    ></div>
     </>
   )}
 </div>

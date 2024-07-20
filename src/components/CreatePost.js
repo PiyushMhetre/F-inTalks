@@ -4,21 +4,16 @@ import axios from "axios";
 import { useDataContext } from "../DataContext";
 import { Toaster, toast } from "react-hot-toast";
 
-
 export default function CreatePost({ onClose, getAllBlogs, flag }) {
   const { register, handleSubmit } = useForm();
-  const {fetchData} = useDataContext();
+  const { fetchData } = useDataContext();
   async function postContent(data) {
     try {
       data.type = flag ? "blog" : "qna";
-      await axios.post(
-        `${process.env.REACT_APP_BASE_ROUTE}/postBlog`,
-        data,
-        {
-          withCredentials: true,
-        }
-      );
-       toast.success("Blog posted !", {
+      await axios.post(`${process.env.REACT_APP_BASE_ROUTE}/postBlog`, data, {
+        withCredentials: true,
+      });
+      toast.success("Blog posted !", {
         style: {
           boxShadow: "none",
           border: "1px solid #e0e0e0",
@@ -30,13 +25,13 @@ export default function CreatePost({ onClose, getAllBlogs, flag }) {
     } catch (e) {
       console.error(e);
     }
-    fetchData();  //to fetch blogs again so that newly posted blog also get rendered
+    fetchData(); //to fetch blogs again so that newly posted blog also get rendered
     onClose();
   }
 
   return (
     <div className="bg-white flex flex-col w-[16.5em] laptop:h-[25em] laptop:w-[40em] z-30 rounded-lg relative">
-      <Toaster/>
+      <Toaster />
       <button className="absolute right-0" onClick={onClose}>
         <IoClose />
       </button>
@@ -51,7 +46,7 @@ export default function CreatePost({ onClose, getAllBlogs, flag }) {
             <input
               id="title"
               type="text" // Corrected to type="text"
-              placeholder="Company Name | Position "
+              placeholder="Fintech | Software Engineer"
               className="focus:outline-none"
               {...register("title")}
             />
@@ -73,8 +68,8 @@ export default function CreatePost({ onClose, getAllBlogs, flag }) {
           }  focus:outline-none rounded-lg`}
           placeholder={
             flag
-              ? "Share your interview experience here. Also your thoughts and anything else you’d like to add"
-              : "Need help with interview prep? Ask a question here!"
+              ? "Describe your interview experience:\n\n1) Interview Type\n2) Interview Rounds\n3) Key Questions\n4) Preparation Tips\n5) Personal Experience\n6) Additional Thoughts."
+              : "Need help? Ask your question here!"
           }
           {...register("content")}
         ></textarea>

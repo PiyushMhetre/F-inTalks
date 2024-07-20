@@ -20,7 +20,7 @@ export default function QAPage() {
   
 
   return (
-    <div className="laptop:mt-16 mt-9">
+    <div className="laptop:mt-16 mt-11">
     {
       loginFlag ? (
          <div className=" flex flex-col items-center bg-customGray">

@@ -4,14 +4,16 @@ import { useForm } from 'react-hook-form';
 import { Toaster, toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
-
 function ForgotPassword() {
   const { register, handleSubmit } = useForm();
   const [step, setStep] = useState(1); // 1: email input, 2: OTP verification, 3: new password input
   const [otp, setOtp] = useState('');
   const [email, setEmail] = useState('');
+  const [isLoading, setIsLoading] = useState(false); // Loading state
   const navigate = useNavigate();
+
   const handleEmailSubmit = async (data) => {
+    setIsLoading(true); // Start loading
     try {
       await axios.post(
         `${process.env.REACT_APP_BASE_ROUTE}/forgotPassword`,
@@ -23,6 +25,8 @@ function ForgotPassword() {
     } catch (error) {
       console.error('Error sending OTP:', error);
       toast.error('Failed to send OTP');
+    } finally {
+      setIsLoading(false); // End loading
     }
   };
 
@@ -43,8 +47,7 @@ function ForgotPassword() {
         console.log("data", data)
       );
       toast.success('Password updated successfully');
-      //setStep(1);
-      navigate("/")
+      navigate("/");
     } catch (error) {
       console.error('Error resetting password:', error);
       toast.error('Failed to reset password');
@@ -53,7 +56,7 @@ function ForgotPassword() {
 
   return (
     <div className="flex flex-col items-center mt-3 mx-[10%] laptop:mx-[20%] w-[80%] laptop:w-[60%] text-sm bg-white p-6 rounded-lg shadow-md">
-    <Toaster/>
+      <Toaster/>
       {step === 1 && (
         <form
           onSubmit={handleSubmit(handleEmailSubmit)}
@@ -72,6 +75,11 @@ function ForgotPassword() {
           >
             Send OTP
           </button>
+          {isLoading && (
+            <div className="flex flex-col items-center mt-4">
+              <p className="mt-2 text-sm text-gray-700">Sending OTP...</p>
+            </div>
+          )}
         </form>
       )}
       {step === 2 && (

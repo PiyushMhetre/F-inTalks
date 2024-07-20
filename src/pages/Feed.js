@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, {  useEffect, useState } from "react";
 import CreatePost from "../components/CreatePost.js";
 import Card from "../components/Card.js";
 import { useDataContext } from "../DataContext";
@@ -6,7 +6,7 @@ import { FaArrowUpLong } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 export default function Feed() {
   const [isCreatePostOpen, setIsCreatePostOpen] = useState(false);
-  const { allBlogs, userId, blogNotificationFlag, setBlogNotificationFlag, loginFlag, fetchData } = useDataContext();
+  const { allBlogs, userId, blogNotificationFlag, setBlogNotificationFlag, loginFlag, fetchData,WebSocketConnection } = useDataContext();
   function handleOpenCreatePost() {
     setIsCreatePostOpen(true);
   }
@@ -15,10 +15,12 @@ export default function Feed() {
     setIsCreatePostOpen(false);
   }
 
- 
+  useEffect(() => {
+    WebSocketConnection()
+  }, []) 
 
   return (
-    <div className="laptop:mt-16 mt-9 overflow-x-hidden ">
+    <div className="laptop:mt-16 mt-11 overflow-x-hidden ">
     {
       loginFlag ? (
          <div className=" flex flex-col items-center bg-[#F3F6FB]">

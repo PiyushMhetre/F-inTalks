@@ -159,7 +159,7 @@ export default function ProfilePage() {
     <>
       <Toaster />
       <div className=" min-h-screen relative  bg-customGray overflow-x-hidden ">
-        <div className="laptop:mt-16 mt-9">
+        <div className="laptop:mt-16 mt-11">
           {loginFlag ? (
             <div className="">
               <div className="mt-1 flex flex-col items-center ">

@@ -20,3 +20,12 @@
 .progress-bar-inner {
   background-color: #4fa94d; /* Change inner color */
 }
+/* Global CSS */
+.content-link{
+  color: blue; /* Blue color for links */
+  text-decoration: none; /* Remove underline */
+}
+
+.content-link:hover {
+  text-decoration: underline; /* Underline on hover */
+}
