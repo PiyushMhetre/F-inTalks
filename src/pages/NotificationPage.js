@@ -47,36 +47,41 @@ export default function NotificationPage() {
      
       <div className="mt-1 flex flex-col items-center w-full">
         <div className="bg-white w-full max-w-2xl p-4 rounded-lg shadow-md">
-          <ul>
-            {notifications.map((notification) => (
-              <li
-                key={notification._id}
-                onClick={() => handleNotificationClick(notification)}
-                className={`rounded  border-b p-2 ${
-                  !notification.read ? "bg-blue-50" : ""
-                } cursor-pointer`}
-              >  
-                
-                <div className="flex justify-between items-center p-4 ">
-                  <div className="flex gap-3"> 
-                 <Link
-                to={`/profile/${notification.fromUser.name}`}
-                state={{ userId: notification.fromUser }}
-                onClick={(e) => e.stopPropagation()}
-              >   
-                    
-                  <img src={notification.fromUser.profilePicture} alt="profile pic" loading="lazy" className=" h-10 w-10 rounded-full"/>
-                 </Link>
-                  <span className=" mt-[6px]  from-stone-900 ">{notification.message}</span>
-                </div>
-                  <span className="text-xs text-gray-500">
-                    {formatTimeDifference(new Date(notification.createdAt))}
-                  </span>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
+    <ul>
+      {notifications.map((notification) => (
+        <li
+          key={notification._id}
+          onClick={() => handleNotificationClick(notification)}
+          className={`rounded border-b p-2 ${
+            !notification.read ? "bg-blue-50" : ""
+          } cursor-pointer`}
+        >  
+          <div className="flex justify-between items-center p-4">
+            <div className="flex gap-3">
+                <img 
+                  src={notification.fromUser.profilePicture} 
+                  alt="profile pic" 
+                  loading="lazy" 
+                  className="h-10 w-10 rounded-full mt-2 tablet:mt-0" 
+                  onClick={(e) => {
+                      e.stopPropagation();
+                      navigate(`/profile/${notification.fromUser.name}`, {state : { userId: notification.fromUser }})
+                    }}
+                />
+              
+              <span className="mt-[6px] from-stone-900">
+                {notification.message}
+              </span>
+            </div>
+            <span className="text-xs text-gray-500">
+              {formatTimeDifference(new Date(notification.createdAt))}
+            </span>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+             
       </div>
     </div>
         ) : (
