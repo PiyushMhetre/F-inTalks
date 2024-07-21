@@ -66,11 +66,13 @@ export default function CreatePost({ onClose, getAllBlogs, flag }) {
           className={`${
             flag ? `h-[17em]` : `h-[20em]`
           }  focus:outline-none rounded-lg`}
-          placeholder={
-            flag
-              ? "Describe your interview experience:\n\n1) Interview Type\n2) Interview Rounds\n3) Key Questions\n4) Preparation Tips\n5) Personal Experience\n6) Additional Thoughts."
-              : "Need help? Ask your question here!"
-          }
+           placeholder={
+  flag
+    ? "Describe your interview experience:\n1. Interview Type\n2. Interview Rounds\n3. Key Questions\n4. Preparation Tips\n5. Personal Experience\n6. Additional Thoughts\n\nOr:\nShare any insights or advice\nTell us about your journey"
+    : "Need help? Ask your question here!\n\nOr:\n\nShare any insights or advice\nTell us about your journey"
+}
+
+
           {...register("content")}
         ></textarea>
 
