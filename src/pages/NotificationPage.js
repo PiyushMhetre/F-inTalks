@@ -59,7 +59,14 @@ export default function NotificationPage() {
                 
                 <div className="flex justify-between items-center p-4 ">
                   <div className="flex gap-3"> 
+                 <Link
+                to={`/profile/${notification.fromUser.name}`}
+                state={{ userId: notification.fromUser }}
+                onClick={(e) => e.stopPropagation()}
+              >   
+                    
                   <img src={notification.fromUser.profilePicture} alt="profile pic" loading="lazy" className=" h-10 w-10 rounded-full"/>
+                 </Link>
                   <span className=" mt-[6px]  from-stone-900 ">{notification.message}</span>
                 </div>
                   <span className="text-xs text-gray-500">
