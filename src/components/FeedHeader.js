@@ -91,7 +91,7 @@ export default function FeedHeader() {
               src={icon}
               alt="InTalks"
               loading="lazy"
-              className="block mt-1 laptop:hidden h-7"
+              className="block mt-1 laptop:hidden h-7 "
               onClick={() => {
                 navigate("/feed");
                 setSelectedOption("Feed");
@@ -101,7 +101,7 @@ export default function FeedHeader() {
               src={logo}
               alt="InTalks"
               loading="lazy"
-              className="hidden pb-2 laptop:block laptop:w-28 laptop:h-14"
+              className="hidden pb-2 laptop:block laptop:w-28 laptop:h-14 cursor-pointer"
               onClick={() => {
                 navigate("/feed");
                 setSelectedOption("Feed");
