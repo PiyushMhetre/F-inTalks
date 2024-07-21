@@ -69,7 +69,7 @@ export default function CreatePost({ onClose, getAllBlogs, flag }) {
            placeholder={
   flag
     ? "Describe your interview experience:\n1. Interview Type\n2. Interview Rounds\n3. Key Questions\n4. Preparation Tips\n5. Personal Experience\n6. Additional Thoughts\n\nOr:\nShare any insights or advice\nTell us about your journey"
-    : "Need help? Ask your question here!\n\nOr:\n\nShare any insights or advice\nTell us about your journey"
+    : "Need help? Ask your question here!"
 }
 
 
