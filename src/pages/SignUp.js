@@ -130,7 +130,7 @@ export default function SignUp() {
         <>
           {isLoading ? (
             <div className="flex flex-col items-center justify-center h-40">
-           <p className="mt-2 px-10 text-lg text-gray-700">Sending OTP at piyushmhetre9596@gmail.com {email}, please wait...</p>
+           <p className="mt-2 px-10 text-lg text-gray-700">Sending OTP at {email}, please wait...</p>
 </div>
           ) : (
             <div className="flex flex-col items-center shadow-md border-t-1 shadow-slate-300 object-cover rounded-md w-[19em] laptop:w-[38em] p-5">
