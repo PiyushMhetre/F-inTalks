@@ -64,7 +64,6 @@ function App() {
   const {  loading } = useDataContext();
 
   return (
-   
     <div>
       {
         renderLoading ? <RenderLoadingScreen/> : 
